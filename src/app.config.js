@@ -6,5 +6,6 @@
 class AppConfig {
     version = '1.0.1';
     team = 'Green Dot Cloud';
+    // Team Name for our CND Bootcamp
 }
 module.exports = AppConfig;
