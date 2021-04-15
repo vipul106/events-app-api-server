@@ -3,7 +3,7 @@
  */
 
 const app = require('../src/app');
-//const debug = require('debug')('roi-backend:server');
+const debug = require('debug')('roi-backend:server');
 const http = require('http');
 const DEFAULT_PORT='8082';
 
@@ -82,7 +82,7 @@ function onListening() {
     const bind = typeof addr === 'string'
         ? 'pipe ' + addr
         : 'port ' + addr.port;
-    //debug('Listening on ' + bind);
+    debug('Listening on ' + bind);
     console.log('Listening on: ', bind);
 }
 
