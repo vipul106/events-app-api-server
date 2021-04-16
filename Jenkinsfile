@@ -59,16 +59,16 @@ pipeline {
             steps {
                 echo "build id = ${env.BUILD_ID}"
                 echo 'Tests passed on to build Docker container'
-                sh "gcloud builds submit -t gcr.io/voidtc-april117/api-server-image:v2.${env.BUILD_ID} ."
+                sh "gcloud builds submit -t gcr.io/roidtc-april117/api-server-image:v2.${env.BUILD_ID} ."
             }
         }        
          stage('Stage 5') {
             steps {
                 echo 'Get cluster credentials'
-                sh 'gcloud container clusters get-credentials demo-api --zone us-central1-c --project voidtc-april117'
+                sh 'gcloud container clusters get-credentials demo-api --zone us-central1-c --project roidtc-april117'
                 echo 'Update the image'
-                echo "gcr.io/voidtc-april117/api-server-image:2.${env.BUILD_ID}"
-                sh "kubectl set image deployment/demo-api demo-api=gcr.io/voidtc-april117/api-server-image:v2.${env.BUILD_ID} --record"
+                echo "gcr.io/roidtc-april117/api-server-image:2.${env.BUILD_ID}"
+                sh "kubectl set image deployment/demo-api demo-api=gcr.io/roidtc-april117/api-server-image:v2.${env.BUILD_ID} --record"
             }
         }
     }
