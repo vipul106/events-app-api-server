@@ -41,7 +41,7 @@ describe('Test routes', () => {
                 .end((err, res) => {
                     res.should.have.status((200));
                     res.body.should.be.a('object');
-                    res.body.config.team.should.eql('Green Dot Cloud');
+                    res.body.config.team.should.eql('My Test Application');
                     done();
                 })
         });
