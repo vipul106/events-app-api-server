@@ -4,7 +4,7 @@
 // variables:
 //      [https://github.com/vipul106/events-app-api-server.git]
 //      [api-server-image]
-//      [GOOGLE_CLOUD_PROJECT]
+//      [roidtc-april117]
 //      [demo-api] 
 //      [us-central1-c]
 //      the following values can be found in the yaml:
@@ -59,16 +59,16 @@ pipeline {
             steps {
                 echo "build id = ${env.BUILD_ID}"
                 echo 'Tests passed on to build Docker container'
-                sh "gcloud builds submit -t gcr.io/GOOGLE_CLOUD_PROJECT/api-server-image:v2.${env.BUILD_ID} ."
+                sh "gcloud builds submit -t gcr.io/roidtc-april117/api-server-image:v2.${env.BUILD_ID} ."
             }
         }        
          stage('Stage 5') {
             steps {
                 echo 'Get cluster credentials'
-                sh 'gcloud container clusters get-credentials demo-api --zone us-central1-c --project GOOGLE_CLOUD_PROJECT'
+                sh 'gcloud container clusters get-credentials demo-api --zone us-central1-c --project roidtc-april117'
                 echo 'Update the image'
-                echo "gcr.io/GOOGLE_CLOUD_PROJECT/api-server-image:2.${env.BUILD_ID}"
-                sh "kubectl set image deployment/demo-api demo-api=gcr.io/GOOGLE_CLOUD_PROJECT/api-server-image:v2.${env.BUILD_ID} --record"
+                echo "gcr.io/roidtc-april117/api-server-image:2.${env.BUILD_ID}"
+                sh "kubectl set image deployment/demo-api demo-api=gcr.io/roidtc-april117/api-server-image:v2.${env.BUILD_ID} --record"
             }
         }
     }
